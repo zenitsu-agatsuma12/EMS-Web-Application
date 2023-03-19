@@ -39,10 +39,11 @@ namespace EMS_Web_Application.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CreateEmp([BindNever] Department Department, Employee newEmp) 
+        public IActionResult CreateEmp(EmployeeViewModel viewModel) 
         {
             if (ModelState.IsValid)
             {
+                var newEmp = new Employee(viewModel.Id, viewModel.Name, viewModel.DOB, viewModel.Email, viewModel.Phone, viewModel.DepartmentId);
                 var emp = _emprepo.AddEmp(newEmp);
                 return RedirectToAction("Employee");
             }
@@ -53,13 +54,18 @@ namespace EMS_Web_Application.Controllers
         public IActionResult UpdateEmp(int empId)
         {
             var oldEmp = _emprepo.GetEmpId(empId);
-            return View(oldEmp);
+            var viewModel = new EmployeeViewModel(oldEmp.Id, oldEmp.Name, oldEmp.DOB, oldEmp.Email, oldEmp.Phone, oldEmp.DepartmentId);
+            return View(viewModel);
         }
         [HttpPost]
-        public IActionResult UpdateEmp(Employee newEmp)
+        public IActionResult UpdateEmp(EmployeeViewModel viewModel)
         {
+            if (ModelState.IsValid) { 
+            var newEmp = new Employee(viewModel.Id, viewModel.Name, viewModel.DOB, viewModel.Email, viewModel.Phone, viewModel.DepartmentId);
             var emp = _emprepo.UpdateEmp(newEmp.Id, newEmp);
             return RedirectToAction("Employee");
+            }
+            return View();
         }
     }
 }
