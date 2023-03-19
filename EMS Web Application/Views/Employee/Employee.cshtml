@@ -1,0 +1,44 @@
+﻿@model List<EmployeeModel>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>List of Employees</h1>
+
+<a asp-action="CreateEmp" asp-controller="Employee">Create New Employee</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Department</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var emp in Model)
+        {
+            <tr>
+                <th scope="row">@emp.Id</th>
+                <td>@emp.Name</td>
+                <td>@emp.DOB</td>
+                <td>@emp.Email</td>
+                <td>@emp.Phone</td>
+                <td>@emp.Department</td>
+                <td><a asp-controller="Employee" asp-action="Details" asp-route-empId="@emp.Id">View</a></td>
+                <td><a asp-controller="Employee" asp-action="UpdateEmp" asp-route-empId="@emp.Id">Edit</a></td>
+                <td><a asp-controller="Employee" asp-action="DeleteEmp" asp-route-empId="@emp.Id">Delete</a></td>
+            </tr>
+        }
+   
+    </tbody>
+</table>
