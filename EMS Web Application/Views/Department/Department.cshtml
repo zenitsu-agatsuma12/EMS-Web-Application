@@ -1,4 +1,4 @@
-﻿@model List<DepartmentModel>
+﻿@model List<Department>
 
 @{
 }
@@ -20,7 +20,7 @@
         {
             <tr>
                 <th scope="row">@dept.Id</th>
-                <td>@dept.Department</td>
+                <td>@dept.Name</td>
                 <td><a asp-controller="Department" asp-action="UpdateDept" asp-route-deptId="@dept.Id">Edit</a></td>
                 <td><a asp-controller="Department" asp-action="DeleteDept" asp-route-deptId="@dept.Id">Delete</a></td>
             </tr>

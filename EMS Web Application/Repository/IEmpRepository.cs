@@ -4,14 +4,14 @@ namespace EMS_Web_Application.Repository
 {
     public interface IEmpRepository
     {
-        List<EmployeeModel> GetAllEmployees();
+        List<Employee> GetAllEmployees();
 
-        EmployeeModel GetEmpId(int employeeId);
+        Employee GetEmpId(int employeeId);
 
-        EmployeeModel AddEmp(EmployeeModel employeeModel);
+        Employee AddEmp(Employee employeeModel);
 
-        EmployeeModel UpdateEmp(int EmpId, EmployeeModel employeeModel);
+        Employee UpdateEmp(int EmpId, Employee employeeModel);
 
-        EmployeeModel DeleteEmp(int employeeId);
+        Employee DeleteEmp(int employeeId);
     }
 }

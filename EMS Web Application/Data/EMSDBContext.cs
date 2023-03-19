@@ -23,7 +23,7 @@ namespace EMS_Web_Application.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<EmployeeModel> Employees { get; set; }
-        public DbSet<DepartmentModel> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Department> Departments { get; set; }
     }
 }

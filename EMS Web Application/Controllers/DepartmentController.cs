@@ -32,7 +32,7 @@ namespace EMS_Web_Application.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CreateDept(DepartmentModel newDept)
+        public IActionResult CreateDept(Department newDept)
         {
             if (ModelState.IsValid)
             {
@@ -50,7 +50,7 @@ namespace EMS_Web_Application.Controllers
             return View(oldDept);
         }
         [HttpPost]
-        public IActionResult UpdateDept(DepartmentModel newDept)
+        public IActionResult UpdateDept(Department newDept)
         {
             var dept = _deptrepo.UpdateDept(newDept.Id, newDept);
             return RedirectToAction("Department");

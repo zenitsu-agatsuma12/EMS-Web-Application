@@ -14,14 +14,14 @@ namespace EMS_Web_Application.Repository.MsSQL
         }
 
 
-        public DepartmentModel AddDept(DepartmentModel newDept)
+        public Department AddDept(Department newDept)
         {
             _dbContext.Add(newDept);
             _dbContext.SaveChanges();
             return newDept;
         }
 
-        public DepartmentModel DeleteDept(int deptId)
+        public Department DeleteDept(int deptId)
         {
             var dept = GetDeptId(deptId);
             if (dept != null)
@@ -32,18 +32,18 @@ namespace EMS_Web_Application.Repository.MsSQL
             return dept;
         }
 
-        public List<DepartmentModel> GetAllDepartments()
+        public List<Department> GetAllDepartments()
         {
             return _dbContext.Departments.AsNoTracking().ToList();
         }
 
-        public DepartmentModel GetDeptId(int Id)
+        public Department GetDeptId(int Id)
         {
 
             return _dbContext.Departments.AsNoTracking().ToList().FirstOrDefault(t => t.Id == Id);
         }
 
-        public DepartmentModel UpdateDept(int deptId, DepartmentModel newDept)
+        public Department UpdateDept(int deptId, Department newDept)
         {
             _dbContext.Departments.Update(newDept);
             _dbContext.SaveChanges();

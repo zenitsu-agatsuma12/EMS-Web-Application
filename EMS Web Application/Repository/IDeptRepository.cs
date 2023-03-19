@@ -4,14 +4,14 @@ namespace EMS_Web_Application.Repository
 {
     public interface IDeptRepository
     {
-        List<DepartmentModel> GetAllDepartments();
+        List<Department> GetAllDepartments();
 
-        DepartmentModel GetDeptId(int deptId);
+        Department GetDeptId(int deptId);
 
-        DepartmentModel AddDept(DepartmentModel departmentModel);
+        Department AddDept(Department departmentModel);
 
-        DepartmentModel UpdateDept(int deptId, DepartmentModel departmentModel);
+        Department UpdateDept(int deptId, Department departmentModel);
 
-        DepartmentModel DeleteDept(int deptId);
+        Department DeleteDept(int deptId);
     }
 }

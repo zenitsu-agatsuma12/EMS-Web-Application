@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using EMS_Web_Application.Repository;
 using EMS_Web_Application.Repository.InMemory;
 using EMS_Web_Application.Repository.MsSQL;
-
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace EMS_Web_Application.Controllers
 {
@@ -39,7 +39,7 @@ namespace EMS_Web_Application.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CreateEmp(EmployeeModel newEmp) 
+        public IActionResult CreateEmp([BindNever] Department Department, Employee newEmp) 
         {
             if (ModelState.IsValid)
             {
@@ -56,7 +56,7 @@ namespace EMS_Web_Application.Controllers
             return View(oldEmp);
         }
         [HttpPost]
-        public IActionResult UpdateEmp(EmployeeModel newEmp)
+        public IActionResult UpdateEmp(Employee newEmp)
         {
             var emp = _emprepo.UpdateEmp(newEmp.Id, newEmp);
             return RedirectToAction("Employee");

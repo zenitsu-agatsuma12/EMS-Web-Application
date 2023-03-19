@@ -16,14 +16,14 @@ namespace EMS_Web_Application.Repository.MsSQL
         }
 
 
-        public EmployeeModel AddEmp(EmployeeModel newEmp)
+        public Employee AddEmp(Employee newEmp)
         {
             _dbContext.Add(newEmp);
             _dbContext.SaveChanges();
             return newEmp;
         }
 
-        public EmployeeModel DeleteEmp(int empId)
+        public Employee DeleteEmp(int empId)
         {
             var emp = GetEmpId(empId);
             if (emp != null)
@@ -34,18 +34,18 @@ namespace EMS_Web_Application.Repository.MsSQL
             return emp;
         }
 
-        public List<EmployeeModel> GetAllEmployees()
+        public List<Employee> GetAllEmployees()
         {
-            return _dbContext.Employees.AsNoTracking().ToList();
+            return _dbContext.Employees.AsNoTracking().Include(e => e.Department).ToList();
         }
 
-        public EmployeeModel GetEmpId(int Id)
+        public Employee GetEmpId(int Id)
         {
 
             return _dbContext.Employees.AsNoTracking().ToList().FirstOrDefault(t => t.Id == Id);
         }
 
-        public EmployeeModel UpdateEmp(int empId, EmployeeModel newEmp)
+        public Employee UpdateEmp(int empId, Employee newEmp)
         {
             _dbContext.Employees.Update(newEmp);
             _dbContext.SaveChanges();

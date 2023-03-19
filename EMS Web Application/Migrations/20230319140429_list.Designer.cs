@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EMS_Web_Application.Migrations
 {
     [DbContext(typeof(EMSDBContext))]
-    [Migration("20230319133317_test")]
-    partial class test
+    [Migration("20230319140429_list")]
+    partial class list
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace EMS_Web_Application.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("EMS_Web_Application.Models.DepartmentModel", b =>
+            modelBuilder.Entity("EMS_Web_Application.Models.Department", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,7 +32,7 @@ namespace EMS_Web_Application.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Department")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -44,21 +44,21 @@ namespace EMS_Web_Application.Migrations
                         new
                         {
                             Id = 1,
-                            Department = "IT"
+                            Name = "IT"
                         },
                         new
                         {
                             Id = 2,
-                            Department = "HR"
+                            Name = "HR"
                         },
                         new
                         {
                             Id = 3,
-                            Department = "CSR"
+                            Name = "CSR"
                         });
                 });
 
-            modelBuilder.Entity("EMS_Web_Application.Models.EmployeeModel", b =>
+            modelBuilder.Entity("EMS_Web_Application.Models.Employee", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,10 +68,6 @@ namespace EMS_Web_Application.Migrations
 
                     b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Department")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
@@ -91,14 +87,15 @@ namespace EMS_Web_Application.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DepartmentId");
+
                     b.ToTable("Employee", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            DOB = new DateTime(2023, 3, 20, 21, 33, 17, 516, DateTimeKind.Local).AddTicks(7556),
-                            Department = "IT",
+                            DOB = new DateTime(2023, 3, 20, 22, 4, 28, 937, DateTimeKind.Local).AddTicks(2348),
                             DepartmentId = 1,
                             Email = "alvin@gmail.com",
                             Name = "Alvin Root",
@@ -107,8 +104,7 @@ namespace EMS_Web_Application.Migrations
                         new
                         {
                             Id = 2,
-                            DOB = new DateTime(2023, 3, 21, 21, 33, 17, 516, DateTimeKind.Local).AddTicks(7575),
-                            Department = "HR",
+                            DOB = new DateTime(2023, 3, 21, 22, 4, 28, 937, DateTimeKind.Local).AddTicks(2391),
                             DepartmentId = 2,
                             Email = "trish@gmail.com",
                             Name = "Tricia Tagle",
@@ -117,13 +113,28 @@ namespace EMS_Web_Application.Migrations
                         new
                         {
                             Id = 3,
-                            DOB = new DateTime(2023, 3, 22, 21, 33, 17, 516, DateTimeKind.Local).AddTicks(7577),
-                            Department = "CSR",
+                            DOB = new DateTime(2023, 3, 22, 22, 4, 28, 937, DateTimeKind.Local).AddTicks(2395),
                             DepartmentId = 3,
                             Email = "Joan@gmail.com",
                             Name = "Joan DC",
                             Phone = "09319232312"
                         });
+                });
+
+            modelBuilder.Entity("EMS_Web_Application.Models.Employee", b =>
+                {
+                    b.HasOne("EMS_Web_Application.Models.Department", "Department")
+                        .WithMany("Employees")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("EMS_Web_Application.Models.Department", b =>
+                {
+                    b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618
         }

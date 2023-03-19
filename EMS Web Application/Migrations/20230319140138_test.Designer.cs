@@ -4,6 +4,7 @@ using EMS_Web_Application.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EMS_Web_Application.Migrations
 {
     [DbContext(typeof(EMSDBContext))]
-    partial class EMSDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230319140138_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,7 +95,7 @@ namespace EMS_Web_Application.Migrations
                         new
                         {
                             Id = 1,
-                            DOB = new DateTime(2023, 3, 20, 22, 4, 28, 937, DateTimeKind.Local).AddTicks(2348),
+                            DOB = new DateTime(2023, 3, 20, 22, 1, 38, 63, DateTimeKind.Local).AddTicks(3857),
                             DepartmentId = 1,
                             Email = "alvin@gmail.com",
                             Name = "Alvin Root",
@@ -102,7 +104,7 @@ namespace EMS_Web_Application.Migrations
                         new
                         {
                             Id = 2,
-                            DOB = new DateTime(2023, 3, 21, 22, 4, 28, 937, DateTimeKind.Local).AddTicks(2391),
+                            DOB = new DateTime(2023, 3, 21, 22, 1, 38, 63, DateTimeKind.Local).AddTicks(3876),
                             DepartmentId = 2,
                             Email = "trish@gmail.com",
                             Name = "Tricia Tagle",
@@ -111,7 +113,7 @@ namespace EMS_Web_Application.Migrations
                         new
                         {
                             Id = 3,
-                            DOB = new DateTime(2023, 3, 22, 22, 4, 28, 937, DateTimeKind.Local).AddTicks(2395),
+                            DOB = new DateTime(2023, 3, 22, 22, 1, 38, 63, DateTimeKind.Local).AddTicks(3877),
                             DepartmentId = 3,
                             Email = "Joan@gmail.com",
                             Name = "Joan DC",

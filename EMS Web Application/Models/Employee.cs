@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EMS_Web_Application.Models
-{    public class EmployeeModel
+{    public class Employee
     {
         public int Id { get; set; }
         [Required]
@@ -14,19 +14,18 @@ namespace EMS_Web_Application.Models
         [EmailAddress]
         public string Email { get; set; }
         public string Phone { get; set; }
-        public string Department { get; set; }
+        public Department Department { get; set; } = default!;
         public int DepartmentId { get; set; }
 
-        public EmployeeModel() { }
+        public Employee() { }
 
-        public EmployeeModel(int id, string name, DateTime dOB, string email, string phone, string dept, int deptid)
+        public Employee(int id, string name, DateTime dOB, string email, string phone, int deptid)
         {
         Id = id;
         Name = name;
         DOB = dOB;        
         Email = email;
         Phone = phone;
-        Department =  dept;
         DepartmentId = deptid;
         }
        

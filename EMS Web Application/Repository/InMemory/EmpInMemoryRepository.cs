@@ -6,28 +6,28 @@ namespace EMS_Web_Application.Repository.InMemory
 {
     public class EmpInMemoryRepository : IEmpRepository
     {
-        static List<EmployeeModel> empList = new List<EmployeeModel>();
+        static List<Employee> empList = new List<Employee>();
 
         static EmpInMemoryRepository()
         {
-            empList.Add(new EmployeeModel(1, "Alvin Root", DateTime.Now.AddDays(1), "alvin@gmail.com", "099232312", "IT", 1));
-            empList.Add(new EmployeeModel(2, "Tricia Tagle", DateTime.Now.AddDays(2), "trish@gmail.com", "099232322312", "HR", 2));
-            empList.Add(new EmployeeModel(3, "Joan DC", DateTime.Now.AddDays(3), "Joan@gmail.com", "09319232312", "CSR", 3));
+            empList.Add(new Employee(1, "Alvin Root", DateTime.Now.AddDays(1), "alvin@gmail.com", "099232312",  1));
+            empList.Add(new Employee(2, "Tricia Tagle", DateTime.Now.AddDays(2), "trish@gmail.com", "099232322312",  2));
+            empList.Add(new Employee(3, "Joan DC", DateTime.Now.AddDays(3), "Joan@gmail.com", "09319232312",  3));
         }
 
-        public List<EmployeeModel> GetAllEmployees()
+        public List<Employee> GetAllEmployees()
         {
         return empList;
         }
 
-        public EmployeeModel AddEmp(EmployeeModel newEmp)
+        public Employee AddEmp(Employee newEmp)
         {
             newEmp.Id = empList.Max(x => x.Id) + 1;
             empList.Add(newEmp);
             return newEmp;
         }
 
-        public EmployeeModel UpdateEmp(int EmpId, EmployeeModel newEmp)
+        public Employee UpdateEmp(int EmpId, Employee newEmp)
         {
             var oldEmp = empList.Find(x => x.Id == EmpId);
             if (oldEmp == null)
@@ -37,7 +37,7 @@ namespace EMS_Web_Application.Repository.InMemory
             return newEmp;
         }
 
-        public EmployeeModel DeleteEmp(int EmpId)
+        public Employee DeleteEmp(int EmpId)
         {
             var oldEmp = empList.Find(x => x.Id == EmpId);
             if (oldEmp == null)
@@ -46,7 +46,7 @@ namespace EMS_Web_Application.Repository.InMemory
             return oldEmp;
         }
 
-        public EmployeeModel GetEmpId(int Id)
+        public Employee GetEmpId(int Id)
         {
             return empList.FirstOrDefault(x => x.Id == Id);
         }

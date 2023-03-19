@@ -3,18 +3,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EMS_Web_Application.Models
 {
-    public class DepartmentModel
+    public class Department
     {
         public int Id { get; set; }
         [Required]
-        public string Department { get; set; }
+        public string Name { get; set; }
+        public List<Employee> Employees { get; set; } = new List<Employee>();
 
-        public DepartmentModel() { }
+        public Department() { }
 
-        public DepartmentModel (int id, string dept)
+        public Department (int id, string dept)
         {
             Id = id;
-            Department = dept;
+            Name = dept;
         }
     }
 }
